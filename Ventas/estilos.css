@@ -1,0 +1,62 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    height: 1000px;
+}
+label{
+    margin: 15px;
+}
+#lupa{
+   
+    display: block;
+    width: 22px;
+    height: 22px;
+}
+#lupaClientes{
+    display: block;
+    width: 22px;
+    height: 22px;
+}
+#selectorArticulos{
+    margin-left: 100px;
+}
+#div1{
+    overflow: auto;
+    width: 300px;
+    height: 500px;
+}
+table{
+    text-align: center;
+}
+#btn{
+    border: none;
+}
+#btns{
+    text-align: center;
+}
+input{
+    text-align: center;
+}
+button{
+    border: transparent;
+    border-radius: 10px;
+}
+button:active{
+    transform: scale(.9);
+}
+button:hover{
+    color: green;
+}
+#container{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    padding: 8%;
+    height: 200px;
+}
+section h3{
+    padding: 20px;
+    color: rgb(14, 4, 99);
+}

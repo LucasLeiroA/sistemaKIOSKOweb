@@ -1,0 +1,62 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+#section2{
+    width: 500px;
+    height: 700px;
+}
+
+#inpu1{
+    position: relative;
+    left: 110px;
+}
+#inpu2{
+    position: relative;
+    left: 69px;
+}
+#inpu3{
+    position: relative;
+    left: 90px;
+}
+#inpu4{
+    position: relative;
+    left: 76px;
+}
+
+input{
+    margin-top: 20px;
+}
+label{
+    margin-top: 20px;
+}
+
+#btnpagar{
+    margin-top: 30px;
+    position: relative;
+    left: 185px;
+    border: transparent;
+    border-radius: 10px;
+}
+#btnpagar:hover{
+    color: green;
+}
+#btnpagar:active{
+    transform: scale(.9);
+}
+#mostrar{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    left: 220px;
+}
+#btn{
+    margin-top: 10px;
+    position: relative;
+    left: 190px;
+    border: transparent;
+    border-radius: 10px;
+}

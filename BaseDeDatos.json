@@ -1,0 +1,307 @@
+{
+  "articulo": [
+    {
+      "nombre": "Coca Cola",
+      "cantidad": "20",
+      "PrecioCompra": "30",
+      "PrecioVenta": "80",
+      "categoriaId": 1,
+      "id": 1
+    },
+    {
+      "nombre": "Pepsi",
+      "cantidad": 25,
+      "PrecioCompra": "30",
+      "PrecioVenta": "90",
+      "categoriaId": 2,
+      "id": 2
+    },
+    {
+      "nombre": "Fanta",
+      "cantidad": 94,
+      "PrecioCompra": "30",
+      "PrecioVenta": "90",
+      "categoriaId": 2,
+      "id": 3
+    },
+    {
+      "nombre": "Galletas Pepito",
+      "cantidad": 19,
+      "PrecioCompra": "30",
+      "PrecioVenta": "100",
+      "categoriaId": 2,
+      "id": 4
+    },
+    {
+      "nombre": "Galletas Oreo",
+      "cantidad": 39,
+      "PrecioCompra": "20",
+      "PrecioVenta": "60",
+      "categoriaId": 1,
+      "id": 5
+    },
+    {
+      "nombre": "Galletas Melba",
+      "cantidad": 29,
+      "PrecioCompra": "30",
+      "PrecioVenta": "90",
+      "categoriaId": 1,
+      "id": 6
+    },
+    {
+      "nombre": "Pepsi Cola",
+      "cantidad": "30",
+      "PrecioCompra": "30",
+      "PrecioVenta": "70",
+      "categoriaId": 2,
+      "id": 7
+    },
+    {
+      "nombre": "Agua",
+      "cantidad": "20",
+      "PrecioCompra": "20",
+      "PrecioVenta": "80",
+      "categoriaId": 2,
+      "id": 8
+    },
+    {
+      "nombre": "Pico dulce",
+      "cantidad": "12",
+      "PrecioCompra": "15",
+      "PrecioVenta": "40",
+      "categoriaId": 1,
+      "id": 9
+    }
+  ],
+  "categoria": [
+    {
+      "id": 1,
+      "tipo": "comestibles"
+    },
+    {
+      "id": 2,
+      "tipo": "bebidas"
+    },
+    {
+      "id": 3,
+      "tipo": "cigarrilos"
+    },
+    {
+      "id": 4,
+      "tipo": "golosinas"
+    }
+  ],
+  "tipoVenta": [
+    {
+      "id": 1,
+      "tipo": "contado"
+    },
+    {
+      "id": 2,
+      "tipo": "cuentaCorriente"
+    }
+  ],
+  "ventas": [
+    {
+      "tipoVentaId": 2,
+      "articuloId": 1,
+      "cantidad": 1,
+      "totalVenta": "80",
+      "clientesId": 1,
+      "estadoVentaId": 1,
+      "dia": 25,
+      "mes": 1,
+      "id": 11
+    },
+    {
+      "tipoVentaId": 1,
+      "articuloId": 2,
+      "cantidad": 1,
+      "totalVenta": "90",
+      "estadoVenta": 1,
+      "dia": 25,
+      "mes": 1,
+      "id": 12
+    },
+    {
+      "tipoVentaId": 1,
+      "articuloId": 5,
+      "cantidad": 1,
+      "totalVenta": "60",
+      "estadoVenta": 1,
+      "dia": 25,
+      "mes": 1,
+      "id": 13
+    },
+    {
+      "tipoVentaId": 1,
+      "articuloId": 4,
+      "cantidad": 1,
+      "totalVenta": "100",
+      "estadoVenta": 1,
+      "dia": 25,
+      "mes": 1,
+      "id": 14
+    },
+    {
+      "tipoVentaId": 1,
+      "articuloId": 2,
+      "cantidad": 1,
+      "totalVenta": "90",
+      "estadoVenta": 1,
+      "dia": 25,
+      "mes": 1,
+      "id": 15
+    },
+    {
+      "tipoVentaId": 1,
+      "articuloId": 2,
+      "cantidad": 1,
+      "totalVenta": "90",
+      "estadoVenta": 1,
+      "dia": 21,
+      "mes": 5,
+      "id": 16
+    },
+    {
+      "tipoVentaId": 2,
+      "articuloId": 3,
+      "cantidad": 1,
+      "totalVenta": "90",
+      "clientesId": 1,
+      "estadoVentaId": 2,
+      "id": 17
+    }
+  ],
+  "estadoVenta": [
+    {
+      "id": 1,
+      "estado": "habilitada"
+    },
+    {
+      "id": 2,
+      "estado": "anulada"
+    }
+  ],
+  "estadocliente": [
+    {
+      "id": 1,
+      "estado": "habilitado"
+    },
+    {
+      "id": 2,
+      "estado": "inhabilitado"
+    }
+  ],
+  "clientes": [
+    {
+      "nomYape": " lucas leiro",
+      "dni": "43562794",
+      "direccion": "Adolfo de la Vega",
+      "id": 1
+    },
+    {
+      "nomYape": "Giulliana Lamontanaro",
+      "dni": "12312331",
+      "direccion": "Lomas De Zamora",
+      "id": 2
+    },
+    {
+      "nomYape": "Juan Pablo Montiveros",
+      "dni": "17831239",
+      "direccion": "Lomas de Tafi",
+      "id": 3
+    },
+    {
+      "nomYape": "Lucas Parolini",
+      "dni": "41123123",
+      "direccion": "Francisco de Aguirre",
+      "id": 4
+    },
+    {
+      "nomYape": "Franco Luna",
+      "dni": "391287312",
+      "direccion": "Lomas de Tafi",
+      "id": 5
+    },
+    {
+      "nomYape": "Leonardo Medina",
+      "dni": "321234154",
+      "direccion": "Lomas de RE lejo",
+      "id": 6
+    }
+  ],
+  "cuentaCorriente": [
+    {
+      "cliente": " lucas leiro",
+      "deuda": -90,
+      "clientesId": 1,
+      "estadoVentaId": 2,
+      "id": 1
+    },
+    {
+      "cliente": "belen leiro",
+      "clientesId": 4,
+      "deuda": "270",
+      "id": 2
+    },
+    {
+      "cliente": "franco leiro",
+      "clientesId": 3,
+      "deuda": 100,
+      "id": 3
+    }
+  ],
+  "MovimientosDecaja": [],
+  "pagosCuentaCorriente": [
+    {
+      "clientesId": 1,
+      "pago": 20,
+      "id": 1
+    },
+    {
+      "clientesId": 3,
+      "pago": 100,
+      "id": 2
+    },
+    {
+      "clientesId": 3,
+      "pago": 1000,
+      "id": 3
+    },
+    {
+      "clientesId": 1,
+      "pago": 100,
+      "id": 4
+    },
+    {
+      "clientesId": 1,
+      "pago": 390,
+      "id": 5
+    }
+  ],
+  "EstadoDeCaja": [
+    {
+      "efectivo": 2060,
+      "id": 1
+    },
+    {
+      "ventasEnCuentaCorriente": 360,
+      "id": 2
+    }
+  ],
+  "ingresoDinero": [
+    {
+      "dinero": 1000,
+      "descripcion": "ajustes de caja",
+      "id": 1
+    }
+  ],
+  "salidaDinero": [
+    {
+      "dinero": 1500,
+      "descripcion": "lucas hizo un retiro de caja",
+      "id": 1
+    }
+  ]
+}

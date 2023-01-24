@@ -1,0 +1,26 @@
+#salida1 label{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+#areatext{
+    margin-left: 30px;
+}
+#salida1{
+    position: relative;
+    left: 400px;
+}
+#confirmar{
+    margin-top: 20px;
+    position: relative;
+    left: 110px;
+}
+button{
+    border: transparent;
+    border-radius: 10px;
+}
+button:hover{
+    color: green;
+}
+button:active{
+    transform: scale(.9);
+}

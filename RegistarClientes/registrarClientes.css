@@ -1,0 +1,32 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+label{
+    margin: 20px;
+}
+
+
+#cont1{
+    margin-top: 100px;
+    position: relative;
+    right:25px;
+}
+
+#cont2{
+    position: relative;
+    left: 80px;
+}
+
+#cont3{
+    position: relative;
+    left: 40px;
+}
+#botones{
+    margin-top: 40px;
+    position: relative;
+    left: 155px;
+    border-radius: 10px;
+    border: transparent;
+}
