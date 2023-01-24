@@ -8,7 +8,7 @@
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "start": "json-server --watch BaseDeDatos.json"
+    "start": "node start.js"
   },
   "repository": {
     "type": "git",
