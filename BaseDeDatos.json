@@ -71,6 +71,14 @@
       "PrecioVenta": "40",
       "categoriaId": 1,
       "id": 9
+    },
+    {
+      "nombre": "Coca Cola",
+      "cantidad": "20",
+      "PrecioCompra": "30",
+      "PrecioVenta": "80",
+      "categoriaId": 1,
+      "id": 10
     }
   ],
   "categoria": [

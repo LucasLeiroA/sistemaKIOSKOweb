@@ -1,12 +1,10 @@
 {
- 
-
   "name": "final-programacion-2-version-simple",
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "start": "json-server --watch BaseDeDatos.json"
+    "start-json": "json-server --watch BaseDeDatos.json"
   },
   "repository": {
     "type": "git",
