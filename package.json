@@ -4,7 +4,7 @@
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "startjson": "json-server --watch BaseDeDatos.json"
+    "startjson": "json-server --watch BaseDeDatos.json --port3001"
   },
   "repository": {
     "type": "git",
