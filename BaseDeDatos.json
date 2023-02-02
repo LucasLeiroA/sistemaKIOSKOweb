@@ -4,7 +4,7 @@
       "nombre": "Coca Cola",
       "cantidad": "20",
       "PrecioCompra": "30",
-      "PrecioVenta": "80",
+      "PrecioVenta": "90",
       "categoriaId": 1,
       "id": 1
     },
@@ -18,10 +18,10 @@
     },
     {
       "nombre": "Fanta",
-      "cantidad": 94,
+      "cantidad": "94",
       "PrecioCompra": "30",
-      "PrecioVenta": "90",
-      "categoriaId": 2,
+      "PrecioVenta": "40",
+      "categoriaId": 1,
       "id": 3
     },
     {
@@ -310,6 +310,14 @@
       "dinero": 1500,
       "descripcion": "lucas hizo un retiro de caja",
       "id": 1
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "nombreUsuario": "lucasleiro",
+      "email": "lucasleiroa@gmail.com",
+      "contrasena": "lucas1248759"
     }
   ]
 }

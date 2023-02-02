@@ -9,9 +9,6 @@ function principal(){
 
  var var_id;
 
-
-
-
  async function mostarStock(){
     document.getElementById("CuerpoTabla").innerHTML = " ";
     let stock = await axios.get("http://localhost:3001/articulo")

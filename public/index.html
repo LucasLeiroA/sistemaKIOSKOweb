@@ -4,37 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="incio.js"></script>
+    <title>Inicio de Sesion</title>
 </head>
 <body>
-    <h1>Deslogueo</h1>
+    <h1>Iniciar Sesion</h1>
     <nav>
-        <ul class="nav nav-tabs d-flex justify-content-end ">
-           <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="/Pantalla Incial/principal.html">Menu principal</a>
-          </li>
-           <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="/Registrar Stock/RegistrarStock.html">Registrar Stock</a>
-           </li>
-           <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="/Ventas/Ventas.html">Ventas</a>
-           </li>
-           <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="/AnulacionVentas/anulacion.html">Anulacion de Ventas</a>
-           </li>
-           <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="/MovimientosCaja/movimientos.html">Movimientos de Caja</a>
-           </li>
-           <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="./RegistarClientes/registrarClientes.html">Registrar Clientes</a>
-           </li>
-           <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="/CobranzaCuentaCorriente/cobranza.html">Cobranza CuentaCorriente</a>
-           </li>
-           <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="/ReportesMultiples/reportes.html">Reportes Multiples</a>
-           </li>
-         </ul>
+       <form >
+        <label for="email">Ingrese su mail o nombre de usuario</label>
+        <input type="text" id="email">
+        <label for="contrasena">Contraseña</label>
+        <input type="password" id="contrasena">
+       </form>
+       <button id="btnInicioSesion" >Ingresar</button>
    </nav>
 </body>
 </html>
