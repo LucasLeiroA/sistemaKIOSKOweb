@@ -35,12 +35,12 @@ async function mostrarTabla(){
                 `
 
 
-                let ventaContado=await axios.get("http://localhost:3000/ventas");
+                let ventaContado=await axios.get("http://localhost:3001/ventas");
                 
                 for (let item of ventaContado.data) {
                     if (item.tipoVentaId==1 && item.estadoVentaId!=2) {
 
-                        let art=await axios.get("http://localhost:3000/articulo");
+                        let art=await axios.get("http://localhost:3001/articulo");
                         nuevaCantidad=item.catidad;
                         for (let item2 of art.data) {
                             if (item2.id==item.articuloId) {
@@ -77,12 +77,12 @@ async function mostrarTabla(){
 
                 `
 
-                let ventaCuentaCorriente=await axios.get("http://localhost:3000/ventas"); 
+                let ventaCuentaCorriente=await axios.get("http://localhost:3001/ventas"); 
                 
                 for (let item of ventaCuentaCorriente.data) {
                     if (item.tipoVentaId==2 && item.estadoVentaId!=2) {
                         
-                        let arti=await axios.get("http://localhost:3000/articulo");
+                        let arti=await axios.get("http://localhost:3001/articulo");
                     
                         for (let item2 of arti.data) {
                             if (item2.id==item.articuloId) {
@@ -92,7 +92,7 @@ async function mostrarTabla(){
                             }
                         }
 
-                        let cli=await axios.get("http://localhost:3000/clientes");
+                        let cli=await axios.get("http://localhost:3001/clientes");
 
                         for (let item3 of cli.data) {
                             if (item3.id==item.clientesId) {
@@ -134,7 +134,7 @@ async function elimVenta(id){
         let modificarSaldo;
         let nuevaDeuda;
         let tipoVenta=document.getElementById("selector").value;
-        let venta=await axios.get("http://localhost:3000/ventas");
+        let venta=await axios.get("http://localhost:3001/ventas");
         
 
   
@@ -153,7 +153,7 @@ async function elimVenta(id){
             }
             
 
-            deudaCliente=await axios.get("http://localhost:3000/cuentaCorriente")
+            deudaCliente=await axios.get("http://localhost:3001/cuentaCorriente")
             for (let item of deudaCliente.data) {
                 if (item.clientesId==cliente) {
                     nombre=item.cliente;
@@ -166,7 +166,7 @@ async function elimVenta(id){
        
             
 
-            modificarSaldo=await axios.put("http://localhost:3000/cuentaCorriente/"+cli,{
+            modificarSaldo=await axios.put("http://localhost:3001/cuentaCorriente/"+cli,{
                 cliente:nombre,
                 deuda: nuevaDeuda,
                 clientesId:cliente,
@@ -175,7 +175,7 @@ async function elimVenta(id){
                 
             
          }
-              let ventass=await axios.get("http://localhost:3000/ventas");  
+              let ventass=await axios.get("http://localhost:3001/ventas");  
               let tip;
               let artId;
               let cantidad;
@@ -194,7 +194,7 @@ async function elimVenta(id){
                 }
             }
 
-        const borrar = await axios.put("http://localhost:3000/ventas/"+var_id,{
+        const borrar = await axios.put("http://localhost:3001/ventas/"+var_id,{
             tipoVentaId:2,
             articuloId: artId,
             cantidad: cantidad,
@@ -211,7 +211,7 @@ async function elimVenta(id){
         let CatID;
         
      
-        let articulo=await axios.get("http://localhost:3000/articulo");
+        let articulo=await axios.get("http://localhost:3001/articulo");
         for (let item of articulo.data) {
             if (item.id==artId) {
                 idArticulo=item.id;
@@ -225,7 +225,7 @@ async function elimVenta(id){
             
         }
         
-        let modArcticulo=await axios.put("http://localhost:3000/articulo/"+idArticulo,{
+        let modArcticulo=await axios.put("http://localhost:3001/articulo/"+idArticulo,{
             nombre:nombreArt,
             cantidad:parseInt(cantidad3+nuevaCantidad),
             PrecioCompra:PC,
@@ -234,7 +234,7 @@ async function elimVenta(id){
         })
 
         if (tipoVenta=="CuentaCorriente") {
-             let estado=await axios.get("http://localhost:3000/EstadoDeCaja")
+             let estado=await axios.get("http://localhost:3001/EstadoDeCaja")
         let totales;
         let final;
         for (let item of estado.data) {
@@ -244,12 +244,12 @@ async function elimVenta(id){
         }
         final=parseInt(totales)-parseInt(ventaT);
 
-        let modiEstado=await axios.put("http://localhost:3000/EstadoDeCaja/2",{
+        let modiEstado=await axios.put("http://localhost:3001/EstadoDeCaja/2",{
             ventasEnCuentaCorriente:final
         })
         }
         if (tipoVenta=="Contado") {
-            let estado=await axios.get("http://localhost:3000/EstadoDeCaja")
+            let estado=await axios.get("http://localhost:3001/EstadoDeCaja")
             let totales;
             let final;
             for (let item of estado.data) {
@@ -258,7 +258,7 @@ async function elimVenta(id){
                 }
             }
             final=parseInt(totales)-parseInt(ventaT);
-            let modiEstado=await axios.put("http://localhost:3000/EstadoDeCaja/1",{
+            let modiEstado=await axios.put("http://localhost:3001/EstadoDeCaja/1",{
                 efectivo:final
             })
 

@@ -14,7 +14,7 @@ function principal(){
 
  async function mostarStock(){
     document.getElementById("CuerpoTabla").innerHTML = " ";
-    let stock = await axios.get("http://localhost:3000/articulo")
+    let stock = await axios.get("http://localhost:3001/articulo")
     let cat;
 
     try {      
@@ -61,7 +61,7 @@ async function elimArticulo(id){
     
     
     try {
-     const borrar = await axios.delete("http://localhost:3000/articulo/"+id); 
+     const borrar = await axios.delete("http://localhost:3001/articulo/"+id); 
      alert("Articulo Eliminado Correctamente")
     } catch (err) {
         alert(err)
@@ -83,7 +83,7 @@ async function elimArticulo(id){
      
     try {
 
-    let categoria=await axios.get("http://localhost:3000/categoria");
+    let categoria=await axios.get("http://localhost:3001/categoria");
 
     for (let item of categoria.data) {
         if (item.tipo==cat) {
@@ -91,7 +91,7 @@ async function elimArticulo(id){
         }
     }
      
-        let art = await axios.post("http://localhost:3000/articulo",{
+        let art = await axios.post("http://localhost:3001/articulo",{
         nombre:arti,
         cantidad:cant,
         PrecioCompra:precioComp,
@@ -112,7 +112,7 @@ async function modArticulo(Id){
     var_id=Id;
     try {
         
-        let arti=await axios.get("http://localhost:3000/articulo");
+        let arti=await axios.get("http://localhost:3001/articulo");
         for (let item of arti.data) {
             if (item.id==var_id) {
 
@@ -137,7 +137,7 @@ async function modArticulo(Id){
     let categoria =document.getElementById("categorias").value;
     let precioCompra = document.getElementById("idPrecioCompra").value;
     let precioVenta = document.getElementById("idPrecioVenta").value;
-    let cat=await axios.get("http://localhost:3000/categoria");
+    let cat=await axios.get("http://localhost:3001/categoria");
     let idCat;
 
     for (let item of cat.data ) {
@@ -146,7 +146,7 @@ async function modArticulo(Id){
         }
     }
 try {
-     let articulo = axios.put("http://localhost:3000/articulo/"+var_id,{
+     let articulo = axios.put("http://localhost:3001/articulo/"+var_id,{
         nombre: nombre,
         cantidad: cantidad,
         PrecioCompra: precioCompra,

@@ -20,7 +20,7 @@ async function buscarArticuloContado(){
 
     document.getElementById("selectorArticulos").innerHTML=`<td></td>`;
     
-        let productos=await axios.get("http://localhost:3000/articulo");
+        let productos=await axios.get("http://localhost:3001/articulo");
 
          let nombreSolicitado=document.getElementById("articuloContado").value;
          
@@ -42,7 +42,7 @@ async function buscarArticuloContado(){
    
 }
 async function selecArticulo(id){
-    let artc=await axios.get("http://localhost:3000/articulo");
+    let artc=await axios.get("http://localhost:3001/articulo");
     var_id=id;
 
     try {
@@ -63,7 +63,7 @@ async function calcularVentaContado(){
     
     let total;
     let nombreArt=document.getElementById("articuloContado").value;
-    let articulo=await axios.get("http://localhost:3000/articulo");
+    let articulo=await axios.get("http://localhost:3001/articulo");
     let cantidad=document.getElementById("cantidadContado").value;
 
     for (let item of articulo.data) {
@@ -89,7 +89,7 @@ async function aceptarVentaContado(){
    
 
 
-    let articulo=await axios.get("http://localhost:3000/articulo");
+    let articulo=await axios.get("http://localhost:3001/articulo");
     let nombre=document.getElementById("articuloContado").value;
     let cantidad=parseInt(document.getElementById("cantidadContado").value) ;
     let total=document.getElementById("totalContado").value;
@@ -114,7 +114,7 @@ async function aceptarVentaContado(){
     if (cantidad>0 && cantidad<=cant) {
         
      try {
-         let totales=await axios.get("http://localhost:3000/EstadoDeCaja");
+         let totales=await axios.get("http://localhost:3001/EstadoDeCaja");
          let totalViejo;
          for (let item of totales.data) {
              if (item.id==1) {
@@ -125,12 +125,12 @@ async function aceptarVentaContado(){
     
         let total1= parseInt(totalViejo) + parseInt(total);
 
-         let estado=await axios.put("http://localhost:3000/EstadoDeCaja/1",{
+         let estado=await axios.put("http://localhost:3001/EstadoDeCaja/1",{
              efectivo:total1
          });
 
        
-       let article=await axios.post("http://localhost:3000/ventas",{
+       let article=await axios.post("http://localhost:3001/ventas",{
             tipoVentaId:1,
             articuloId: artId,
              cantidad: cantidad,
@@ -143,7 +143,7 @@ async function aceptarVentaContado(){
        
         let nuevaCantidad=cant-cantidad;
 
-      let  restaDeCantidad=await axios.put("http://localhost:3000/articulo/"+artId,{
+      let  restaDeCantidad=await axios.put("http://localhost:3001/articulo/"+artId,{
             nombre: nombre,
             cantidad: nuevaCantidad,
             PrecioCompra: PC,
@@ -171,7 +171,7 @@ async function aceptarVentaContado(){
 
 async function buscadorClienteCuentaCorriente(){
     document.getElementById("SelectorClientes").innerHTML=`<td></td>`;
-    let clientes=await axios.get("http://localhost:3000/clientes");
+    let clientes=await axios.get("http://localhost:3001/clientes");
     let nombresolicitado=document.getElementById("cliente").value;
     let texto=nombresolicitado.toLowerCase();
     let nombre;
@@ -186,7 +186,7 @@ async function buscadorClienteCuentaCorriente(){
 
 async function selecCliente(id){
     
-    let cliente=await axios.get("http://localhost:3000/clientes");
+    let cliente=await axios.get("http://localhost:3001/clientes");
     var_idCliente=id;
     try {
         for (let item of cliente.data) {
@@ -203,7 +203,7 @@ async function selecCliente(id){
 async function buscardorArticulosCuentaCorriente(){
     document.getElementById("SelectorClientes").innerHTML=`<td></td>`;
     
-        let productos=await axios.get("http://localhost:3000/articulo");
+        let productos=await axios.get("http://localhost:3001/articulo");
          let nombreSolicitado=document.getElementById("articuloCuentaCorriente").value;
         let texto=nombreSolicitado.toLowerCase();
        let nombre;
@@ -222,7 +222,7 @@ async function buscardorArticulosCuentaCorriente(){
 }
 
 async function selecArticuloCuentaCorriente(id){
-    let artc=await axios.get("http://localhost:3000/articulo");
+    let artc=await axios.get("http://localhost:3001/articulo");
     var_id=id;
 
     try {
@@ -243,7 +243,7 @@ async function calcularVentaCuentaCorriente(){
     
     let total;
     let nombreArt=document.getElementById("articuloCuentaCorriente").value;
-    let articulo=await axios.get("http://localhost:3000/articulo");
+    let articulo=await axios.get("http://localhost:3001/articulo");
     let cantidad=document.getElementById("cantidadCuentaCorriente").value;
 
     for (let item of articulo.data) {
@@ -261,7 +261,7 @@ async function calcularVentaCuentaCorriente(){
 async function aceptarVentaCuentaCorriente(){
 
    
-    let articulo=await axios.get("http://localhost:3000/articulo");
+    let articulo=await axios.get("http://localhost:3001/articulo");
     let nombreCliente=document.getElementById("cliente").value;
     let nombre=document.getElementById("articuloCuentaCorriente").value;
     let cantidad=parseInt(document.getElementById("cantidadCuentaCorriente").value) ;
@@ -279,7 +279,7 @@ async function aceptarVentaCuentaCorriente(){
   
   
     try{
-        let cliente=await axios.get("http://localhost:3000/clientes");
+        let cliente=await axios.get("http://localhost:3001/clientes");
             for (let item of cliente.data) {
                 if (item.nomYape==nombreCliente) {
                     clienteid=item.id;
@@ -300,7 +300,7 @@ async function aceptarVentaCuentaCorriente(){
                     
                 if (cantidad>0 && cantidad<=cant) {
                     
-                let estado=await axios.get("http://localhost:3000/EstadoDeCaja");
+                let estado=await axios.get("http://localhost:3001/EstadoDeCaja");
                 let totales;
                 let final;
                 for (let item of estado.data) {
@@ -310,10 +310,10 @@ async function aceptarVentaCuentaCorriente(){
                 }
                  final=parseInt(totales)+parseInt(total);   
 
-                 let modi=await axios.put("http://localhost:3000/EstadoDeCaja/2",{
+                 let modi=await axios.put("http://localhost:3001/EstadoDeCaja/2",{
                     ventasEnCuentaCorriente:final 
                  })
-                let article=await axios.post("http://localhost:3000/ventas",{
+                let article=await axios.post("http://localhost:3001/ventas",{
                         tipoVentaId:2,
                         articuloId: artId,
                         cantidad: cantidad,
@@ -327,7 +327,7 @@ async function aceptarVentaCuentaCorriente(){
                 
                     let nuevaCantidad=cant-cantidad;
 
-                let  restaDeCantidad=await axios.put("http://localhost:3000/articulo/"+artId,{
+                let  restaDeCantidad=await axios.put("http://localhost:3001/articulo/"+artId,{
                         nombre: nombre,
                         cantidad: nuevaCantidad,
                         PrecioCompra: PC,
@@ -336,7 +336,7 @@ async function aceptarVentaCuentaCorriente(){
                         });
                 
             
-              let cuenta=await axios.get("http://localhost:3000/cuentaCorriente");
+              let cuenta=await axios.get("http://localhost:3001/cuentaCorriente");
            
            
               for (let item of cuenta.data) {
@@ -352,7 +352,7 @@ async function aceptarVentaCuentaCorriente(){
            
              if (comprobacion==true) {
                
-                 let cuenta=await axios.put("http://localhost:3000/cuentaCorriente/"+idCuenta,{
+                 let cuenta=await axios.put("http://localhost:3001/cuentaCorriente/"+idCuenta,{
                      cliente:nombreCliente,
                      clientesId:clienteid,
                      deuda:TotalCuenta
@@ -361,7 +361,7 @@ async function aceptarVentaCuentaCorriente(){
              
              }
              else{
-                   let cuenta=await axios.post("http://localhost:3000/cuentaCorriente",{
+                   let cuenta=await axios.post("http://localhost:3001/cuentaCorriente",{
                     cliente:nombreCliente,
                     clientesId:clienteid,
                    deuda: total

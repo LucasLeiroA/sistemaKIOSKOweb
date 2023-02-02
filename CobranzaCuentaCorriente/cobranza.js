@@ -8,8 +8,8 @@ var var_id;
 
 async function mostrarclintes(){
     document.getElementById("cuerpoTabla").innerHTML="";
-   let cuentaCorriente = await axios.get("http://localhost:3000/cuentaCorriente");
-   let cliente=await axios.get("http://localhost:3000/clientes");
+   let cuentaCorriente = await axios.get("http://localhost:3001/cuentaCorriente");
+   let cliente=await axios.get("http://localhost:3001/clientes");
 
    for (let item2 of cuentaCorriente.data) {
        for (let item of cliente.data) {
@@ -27,8 +27,8 @@ async function mostrarclintes(){
 async function selecCliente(id){
 
     var_id=id;
-    let cli=await axios.get("http://localhost:3000/clientes");
-    let cc=await axios.get("http://localhost:3000/cuentaCorriente");
+    let cli=await axios.get("http://localhost:3001/clientes");
+    let cc=await axios.get("http://localhost:3001/cuentaCorriente");
     let deuda;
 
     for (let item of cc.data) {
@@ -57,7 +57,7 @@ async function pagaoDeuda(){
            let clienteId;
            let deuda;
            let idCuentaCorriente;
-           let cc=await axios.get("http://localhost:3000/cuentaCorriente");
+           let cc=await axios.get("http://localhost:3001/cuentaCorriente");
 
     for (let item of cc.data) {
         if (item.clientesId==var_id) {
@@ -70,20 +70,20 @@ async function pagaoDeuda(){
 
     let nuevaDeuda=deuda-pago;
     if (deuda>=pago) {
-         let modificarDeuda=await axios.put("http://localhost:3000/cuentaCorriente/"+idCuentaCorriente,{
+         let modificarDeuda=await axios.put("http://localhost:3001/cuentaCorriente/"+idCuentaCorriente,{
         cliente:cliente ,
         clientesId:clienteId,
         deuda: nuevaDeuda
       },
     );
 
-    let pagoDeuda=await axios.post("http://localhost:3000/pagosCuentaCorriente",{
+    let pagoDeuda=await axios.post("http://localhost:3001/pagosCuentaCorriente",{
         clientesId:clienteId,
         pago:pago
     })
     let totalEfec;
     let final=0;
-    let efec=await axios.get("http://localhost:3000/EstadoDeCaja");
+    let efec=await axios.get("http://localhost:3001/EstadoDeCaja");
     for (let item of efec.data) {
         if (item.id==1) {
             totalEfec=item.efectivo;
@@ -91,11 +91,11 @@ async function pagaoDeuda(){
     }
     final=parseInt(totalEfec)+pago;
 
-    let sumaEfectivo=await axios.put("http://localhost:3000/EstadoDeCaja/1",{
+    let sumaEfectivo=await axios.put("http://localhost:3001/EstadoDeCaja/1",{
         efectivo:final
     })
 
-    let cc=await axios.get("http://localhost:3000/EstadoDeCaja");
+    let cc=await axios.get("http://localhost:3001/EstadoDeCaja");
     let valorcc;
     let finalCC=0;
     for (let item of cc.data) {
@@ -104,7 +104,7 @@ async function pagaoDeuda(){
         }
     }
     finalCC=parseInt(valorcc)-pago;
-    let restaCC=await axios.put("http://localhost:3000/EstadoDeCaja/2",{
+    let restaCC=await axios.put("http://localhost:3001/EstadoDeCaja/2",{
         ventasEnCuentaCorriente:finalCC
     })
 

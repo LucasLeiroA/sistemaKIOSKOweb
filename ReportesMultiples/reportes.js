@@ -28,7 +28,7 @@ async function aceptarOpcion(){
             </tr>
             `
     
-            let estado=await axios.get("http://localhost:3000/EstadoDeCaja");
+            let estado=await axios.get("http://localhost:3001/EstadoDeCaja");
             let efectivo;
             let cc;
             for (let item of estado.data) {
@@ -61,9 +61,9 @@ async function aceptarOpcion(){
                 <th scope="col">total</th>
             </tr>
             `
-            let ventas=await axios.get("http://localhost:3000/ventas");
-            let articulos=await axios.get("http://localhost:3000/articulo");
-            let tipoVenta=await axios.get("http://localhost:3000/tipoVenta")
+            let ventas=await axios.get("http://localhost:3001/ventas");
+            let articulos=await axios.get("http://localhost:3001/articulo");
+            let tipoVenta=await axios.get("http://localhost:3001/tipoVenta")
             let nom;
             let tipo;
          
@@ -109,9 +109,9 @@ async function aceptarOpcion(){
                 <th scope="col">total</th>
             </tr>
             `
-            let ventas=await axios.get("http://localhost:3000/ventas");
-            let articulos=await axios.get("http://localhost:3000/articulo");
-            let tipoVenta=await axios.get("http://localhost:3000/tipoVenta")
+            let ventas=await axios.get("http://localhost:3001/ventas");
+            let articulos=await axios.get("http://localhost:3001/articulo");
+            let tipoVenta=await axios.get("http://localhost:3001/tipoVenta")
             let nom;
             let tipo;
             
@@ -163,9 +163,9 @@ async function aceptarOpcion(){
                 <th scope="col">total</th>
             </tr>
             `
-            let ventas=await axios.get("http://localhost:3000/ventas");
-            let articulos=await axios.get("http://localhost:3000/articulo");
-            let tipoVenta=await axios.get("http://localhost:3000/tipoVenta")
+            let ventas=await axios.get("http://localhost:3001/ventas");
+            let articulos=await axios.get("http://localhost:3001/articulo");
+            let tipoVenta=await axios.get("http://localhost:3001/tipoVenta")
             let nom;
             let tipo;
          
@@ -213,7 +213,7 @@ async function aceptarOpcion(){
             `
     
     
-            let ventaContado=await axios.get("http://localhost:3000/ventas");
+            let ventaContado=await axios.get("http://localhost:3001/ventas");
             let total1=0;
             for (let item of ventaContado.data) {
                 if (item.tipoVentaId==1 && item.estadoVentaId!=2) {
@@ -222,7 +222,7 @@ async function aceptarOpcion(){
     
                     total1=total1+total;
     
-                    let art=await axios.get("http://localhost:3000/articulo");
+                    let art=await axios.get("http://localhost:3001/articulo");
     
                     for (let item2 of art.data) {
                         if (item2.id==item.articuloId) {
@@ -263,7 +263,7 @@ async function aceptarOpcion(){
     
             `
     
-            let ventaCuentaCorriente=await axios.get("http://localhost:3000/ventas"); 
+            let ventaCuentaCorriente=await axios.get("http://localhost:3001/ventas"); 
             let total1=0;
             for (let item of ventaCuentaCorriente.data) {
                 if (item.tipoVentaId==2 && item.estadoVentaI!=2) {
@@ -272,7 +272,7 @@ async function aceptarOpcion(){
     
                     total1=total1+total;
     
-                    let arti=await axios.get("http://localhost:3000/articulo");
+                    let arti=await axios.get("http://localhost:3001/articulo");
                 
                     for (let item2 of arti.data) {
                         if (item2.id==item.articuloId) {
@@ -282,7 +282,7 @@ async function aceptarOpcion(){
                         }
                     }
     
-                    let cli=await axios.get("http://localhost:3000/clientes");
+                    let cli=await axios.get("http://localhost:3001/clientes");
     
                     for (let item3 of cli.data) {
                         if (item3.id==item.clientesId) {
@@ -323,7 +323,7 @@ async function aceptarOpcion(){
             </tr>
 
             `
-            let venta=await axios.get("http://localhost:3000/ventas"); 
+            let venta=await axios.get("http://localhost:3001/ventas"); 
             let total1=0;
             let articulo;
                 for (let item of venta.data) {
@@ -333,7 +333,7 @@ async function aceptarOpcion(){
 
                         total1=total1+total;
 
-                        let arti=await axios.get("http://localhost:3000/articulo");
+                        let arti=await axios.get("http://localhost:3001/articulo");
                     
                         for (let item2 of arti.data) {
                             if (item2.id==item.articuloId) {
@@ -343,7 +343,7 @@ async function aceptarOpcion(){
                             }
                         }
 
-                        let cli=await axios.get("http://localhost:3000/clientes");
+                        let cli=await axios.get("http://localhost:3001/clientes");
 
                         for (let item3 of cli.data) {
                             if (item3.id==item.clientesId) {
@@ -384,8 +384,8 @@ async function aceptarOpcion(){
 
                     `
 
-                    let clientes=await axios.get("http://localhost:3000/clientes");
-                    let cc=await axios.get("http://localhost:3000/cuentaCorriente");
+                    let clientes=await axios.get("http://localhost:3001/clientes");
+                    let cc=await axios.get("http://localhost:3001/cuentaCorriente");
                     let total1=0;
                     let total;
                     let nombre;
@@ -439,8 +439,8 @@ async function aceptarOpcion(){
         
                 `
                 let nombrcliente;
-                let pagos=await axios.get("http://localhost:3000/pagosCuentaCorriente");
-                let cliente=await axios.get("http://localhost:3000/clientes");
+                let pagos=await axios.get("http://localhost:3001/pagosCuentaCorriente");
+                let cliente=await axios.get("http://localhost:3001/clientes");
                 for (let item2 of cliente.data) {
                     
                     for (let item of pagos.data) {
@@ -471,7 +471,7 @@ async function aceptarOpcion(){
                 </tr>
         
                 `
-                 let stock=await axios.get("http://localhost:3000/articulo");
+                 let stock=await axios.get("http://localhost:3001/articulo");
                  for (let item of stock.data) {
                     switch (item.categoriaId) {
                         case 1:
@@ -515,7 +515,7 @@ async function aceptarOpcion(){
                 </tr>
         
                 `
-                 let stock=await axios.get("http://localhost:3000/articulo");
+                 let stock=await axios.get("http://localhost:3001/articulo");
                  for (let item of stock.data) {
                     switch (item.categoriaId) {
                         case 1:
@@ -563,7 +563,7 @@ async function aceptarOpcion(){
                 </tr>
         
                 `
-                 let stock=await axios.get("http://localhost:3000/articulo");
+                 let stock=await axios.get("http://localhost:3001/articulo");
                  for (let item of stock.data) {
                     switch (item.categoriaId) {
                         case 1:
@@ -611,7 +611,7 @@ async function aceptarOpcion(){
         
                 `
 
-                let movEntrada=await axios.get("http://localhost:3000/ingresoDinero");
+                let movEntrada=await axios.get("http://localhost:3001/ingresoDinero");
             
                 for (let item of movEntrada.data) {
 
@@ -635,7 +635,7 @@ async function aceptarOpcion(){
         
                 `
 
-                let salDinero=await axios.get("http://localhost:3000/salidaDinero");
+                let salDinero=await axios.get("http://localhost:3001/salidaDinero");
            
                 for (let item of salDinero.data) {
                     document.getElementById("tablaMuestra2").innerHTML+= 

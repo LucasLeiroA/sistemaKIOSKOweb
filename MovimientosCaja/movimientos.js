@@ -55,12 +55,12 @@ async function IngresoDeDinero(){
     let total;
     let final;
 try {
-        let ingreso=await axios.post("http://localhost:3000/ingresoDinero",{
+        let ingreso=await axios.post("http://localhost:3001/ingresoDinero",{
         dinero:parseInt(money),
         descripcion:descripcion
     })
 
-    let estado=await axios.get("http://localhost:3000/EstadoDeCaja");
+    let estado=await axios.get("http://localhost:3001/EstadoDeCaja");
     for (let item of estado.data) {
 
         if (item.id==1) {
@@ -68,7 +68,7 @@ try {
         }
     }
      final=total+parseInt(money);
-    let modiestado=await axios.put("http://localhost:3000/EstadoDeCaja/1",{
+    let modiestado=await axios.put("http://localhost:3001/EstadoDeCaja/1",{
         efectivo:final
     });
 } catch (err) {
@@ -83,12 +83,12 @@ async function salidaDeDinero(){
     let total;
     let final;
     try {
-        let ingreso=await axios.post("http://localhost:3000/salidaDinero",{
+        let ingreso=await axios.post("http://localhost:3001/salidaDinero",{
         dinero:parseInt(money),
         descripcion:descripcion
     })
 
-    let estado=await axios.get("http://localhost:3000/EstadoDeCaja");
+    let estado=await axios.get("http://localhost:3001/EstadoDeCaja");
     for (let item of estado.data) {
 
         if (item.id==1) {
@@ -96,7 +96,7 @@ async function salidaDeDinero(){
         }
     }
      final=total-parseInt(money);
-    let modiestado=await axios.put("http://localhost:3000/EstadoDeCaja/1",{
+    let modiestado=await axios.put("http://localhost:3001/EstadoDeCaja/1",{
         efectivo:final
     });
 } catch (err) {
