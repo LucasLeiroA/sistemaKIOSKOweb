@@ -1,5 +1,20 @@
 window.onload=principal;
 
+//obteniendo la url desde el localstorage
+
+let url = localStorage.getItem("url");
+console.log(url);
+UrlAnterior = document.referrer;
+if(UrlAnterior !== url){
+    alert('no intentes hackear')
+   window.location= "./Admin.html";
+}
+
+
+
+
+
+
 function principal(){
    
     document.getElementById("mostarStock").addEventListener("click", mostarStock);
