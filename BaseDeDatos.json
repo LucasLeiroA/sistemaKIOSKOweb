@@ -109,6 +109,46 @@
       "PrecioVenta": "3131",
       "categoriaId": 1,
       "id": 14
+    },
+    {
+      "nombre": "Oreo",
+      "cantidad": "12",
+      "PrecioCompra": "20",
+      "PrecioVenta": "40",
+      "categoriaId": 1,
+      "id": 15
+    },
+    {
+      "nombre": "Pepito",
+      "cantidad": "1",
+      "PrecioCompra": "20",
+      "PrecioVenta": "30",
+      "categoriaId": 1,
+      "id": 16
+    },
+    {
+      "nombre": "123",
+      "cantidad": "131",
+      "PrecioCompra": "31",
+      "PrecioVenta": "341",
+      "categoriaId": 1,
+      "id": 17
+    },
+    {
+      "nombre": "dada",
+      "cantidad": "12",
+      "PrecioCompra": "12",
+      "PrecioVenta": "414",
+      "categoriaId": 1,
+      "id": 18
+    },
+    {
+      "nombre": "cocaina",
+      "cantidad": "12",
+      "PrecioCompra": "10",
+      "PrecioVenta": "20",
+      "categoriaId": 1,
+      "id": 19
     }
   ],
   "categoria": [

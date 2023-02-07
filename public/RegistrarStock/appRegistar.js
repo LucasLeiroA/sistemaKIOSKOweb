@@ -2,17 +2,15 @@ window.onload=principal;
 
 //obteniendo la url desde el localstorage
 let urlActual = window.location.href;
-let url = localStorage.getItem("url");
+let url = localStorage.getItem("urlAdmin");
 
 UrlAnterior = document.referrer;
-if (UrlAnterior !== urlActual) {
+
+if(UrlAnterior !== url ){
     
-     if(UrlAnterior !== url ){
-   
-    alert('no intentes hackear')
-   window.location= "./Admin.html";
+alert('no intentes hackear')
+window.location= "./Admin.html";
 }   
-}
 
 
 
@@ -115,9 +113,13 @@ async function elimArticulo(id){
         PrecioVenta:precioVent,
         categoriaId:catId
         });
-        alert("Articulo Guardado Correctamente")
+        swal({
+            title: "Good job!",
+            text: "You clicked the button!",
+            icon: "success",
+          })
     } catch (err) {
-        alert(err)
+        swal(err)
     }
     }else{
         alert("Todos los campos deben estas cargados correctamente")

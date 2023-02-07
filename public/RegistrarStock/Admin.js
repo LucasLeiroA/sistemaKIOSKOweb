@@ -9,13 +9,7 @@ let url = window.location.href;
 
 localStorage.setItem("urlAdmin" , url);
 
-let pantalla = localStorage.getItem("urlPatallaIncial");
-let ventas = localStorage.getItem("urlVentas");
-let anulacion = localStorage.getItem("urlAnulacion");
-let movimientos = localStorage.getItem("UrlMovimientos");
-let registrar = localStorage.getItem("urlRegistrarClientes");
-let cobranza = localStorage.getItem("urlCobranza");
-let reportes = localStorage.getItem("urlReportes");
+
 
  
 
@@ -30,7 +24,6 @@ function ingresoAdmin(){
 
     if ((input_usuario == usuario || input_usuario == correo) && input_password == password) {
          window.location="./RegistrarStock.html";
-         window.close();
     }else{
         alert("Usuario o Contraseña Incorrectos")
     }

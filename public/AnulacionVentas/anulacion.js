@@ -1,5 +1,8 @@
 window.onload=principal;
 
+
+
+
 let url = window.location.href;
 
 localStorage.setItem("urlAnulacion" , url);
