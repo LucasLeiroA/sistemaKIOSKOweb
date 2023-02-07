@@ -1,5 +1,17 @@
 window.onload=principal;
 
+let url = window.location.href;
+
+localStorage.setItem("urlCobranza" , url);
+
+let pantalla = localStorage.getItem("urlPatallaIncial");
+let admin = localStorage.getItem("urlAdmin");
+let ventas = localStorage.getItem("urlVentas");
+let anulacion = localStorage.getItem("urlAnulacion");
+let movimientos = localStorage.getItem("urlMovimientos");
+let registrar = localStorage.getItem("urlRegistrarClientes");
+let reportes = localStorage.getItem("urlReportes");
+
 function principal(){
     document.getElementById("btnpagar").addEventListener("click", pagaoDeuda)
     document.getElementById("mostrar").addEventListener("click", mostrarclintes)

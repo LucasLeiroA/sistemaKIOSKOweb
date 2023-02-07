@@ -1,5 +1,18 @@
 window.onload=principal;
 
+let url = window.location.href;
+
+localStorage.setItem("urlAnulacion" , url);
+
+let pantalla = localStorage.getItem("urlPatallaIncial");
+let admin = localStorage.getItem("urlAdmin");
+let ventas = localStorage.getItem("urlVentas");
+let movimientos = localStorage.getItem("UrlMovimientos");
+let registrar = localStorage.getItem("urlRegistrarClientes");
+let cobranza = localStorage.getItem("urlCobranza");
+let reportes = localStorage.getItem("urlReportes");
+
+
 function principal(){
      document.getElementById("btnAceptar").addEventListener("click",mostrarTabla)
 }
@@ -105,6 +118,54 @@ async function mostrarTabla(){
                         `<tr>
                         <th scope="row">${item.id}</th>
                         <td>${Cliente}</td>
+                        <td>${articulo}</td>
+                        <td>${item.cantidad}</td>
+                        <td>${item.totalVenta}</td>
+                        <td><button onclick="elimVenta(${item.id})">X</button></td>
+                    </tr>`;
+                    }
+                    
+                }
+            }
+            if (TipoVenta=="Tarjeta/Transferencia") {
+                document.getElementById("cabezaTabla").innerHTML+=
+                `
+                <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Articulo</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">total</th>
+                </tr>
+
+                `
+
+                let ventaCuentaCorriente=await axios.get("http://localhost:3001/ventas"); 
+                
+                for (let item of ventaCuentaCorriente.data) {
+                    if (item.tipoVentaId==3 && item.estadoVentaId!=2) {
+                        
+                        let arti=await axios.get("http://localhost:3001/articulo");
+                    
+                        for (let item2 of arti.data) {
+                            if (item2.id==item.articuloId) {
+                                articulo=item2.nombre;
+                                break;
+
+                            }
+                        }
+
+                        let cli=await axios.get("http://localhost:3001/clientes");
+
+                        for (let item3 of cli.data) {
+                            if (item3.id==item.clientesId) {
+                                Cliente=item3.nomYape;
+                                break;
+                            }
+                        }
+
+                        document.getElementById("tablaMuestra").innerHTML+=
+                        `<tr>
+                        <th scope="row">${item.id}</th>
                         <td>${articulo}</td>
                         <td>${item.cantidad}</td>
                         <td>${item.totalVenta}</td>

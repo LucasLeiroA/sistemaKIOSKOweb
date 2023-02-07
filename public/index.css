@@ -1,8 +1,5 @@
-nav{
-    height: 10%;
-}
-
 body{
+    background: url(./imagenes/background.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -66,7 +63,7 @@ button{
 .forgot a{
     color: white;
 }
-#btn_admin{
+#btn_incio{
     margin: auto;
     margin-bottom: 20px;
 }

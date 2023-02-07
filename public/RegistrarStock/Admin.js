@@ -1,6 +1,5 @@
 window.onload=principal;
 
-
 function principal(){
     document.getElementById("btn_admin").addEventListener("click",ingresoAdmin)
 }
@@ -8,9 +7,17 @@ function principal(){
 
 let url = window.location.href;
 
-localStorage.setItem("url" , url);
+localStorage.setItem("urlAdmin" , url);
 
+let pantalla = localStorage.getItem("urlPatallaIncial");
+let ventas = localStorage.getItem("urlVentas");
+let anulacion = localStorage.getItem("urlAnulacion");
+let movimientos = localStorage.getItem("UrlMovimientos");
+let registrar = localStorage.getItem("urlRegistrarClientes");
+let cobranza = localStorage.getItem("urlCobranza");
+let reportes = localStorage.getItem("urlReportes");
 
+ 
 
 var usuario = "lucasleiro"
 var correo = "lucasleiroa@gmail.com"

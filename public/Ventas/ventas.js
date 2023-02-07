@@ -1,23 +1,78 @@
 window.onload=principal;
 
+// let url = window.location.href;
+
+// localStorage.setItem("urlVentas" , url);
+
+// let pantalla = localStorage.getItem("urlPatallaIncial");
+// let admin = localStorage.getItem("urlAdmin");
+// let anulacion = localStorage.getItem("urlAnulacion");
+// let movimientos = localStorage.getItem("UrlMovimientos");
+// let registrar = localStorage.getItem("urlRegistrarClientes");
+// let cobranza = localStorage.getItem("urlCobranza");
+// let reportes = localStorage.getItem("urlReportes");
+
 function principal(){
     document.getElementById("cancelarVenta2").addEventListener("click", cancelarVentaCuentaCorriente)
     document.getElementById("aceptarVenta2").addEventListener("click", aceptarVentaCuentaCorriente )
     document.getElementById("calcularCuentaCorriente").addEventListener("click" ,calcularVentaCuentaCorriente)
+
     document.getElementById("cancelarVenta2").addEventListener("click",cancelarVentaContado)
+
     document.getElementById("buscador1").addEventListener("click", buscardorArticulosCuentaCorriente)
     document.getElementById("buscarClientes").addEventListener("click", buscadorClienteCuentaCorriente)
+
     document.getElementById("buscador").addEventListener("click", buscarArticuloContado)
     document.getElementById("calcular").addEventListener("click", calcularVentaContado)
     document.getElementById("cancelarVenta").addEventListener("click",cancelarVentaContado)
     document.getElementById("aceptarVenta").addEventListener("click", aceptarVentaContado)
+
+    document.getElementById("mostrar_ventaContado").addEventListener("click", mostarContado)
+    document.getElementById("mostrar_ventaCuentaCorriente").addEventListener("click",mostrarCuentaCorriente)
+    document.getElementById("mostrar_ventaTarjeta").addEventListener("click", mostrarTarjeta)
+
+
+    document.getElementById("buscador_articulo_transferencia").addEventListener("click", buscadorArticuloTarjeta)
+    document.getElementById("calcular_venta_tarjeta").addEventListener("click" ,calcularVentaTarjeta )
+    document.getElementById("cancelarVenta_tarjeta").addEventListener("click" ,cancelarVentaTarjeta )
+    document.getElementById("aceptarVenta_tarjeta").addEventListener("click" ,aceptarVentaTarjeta )
 }
 var var_id;
 var var_idCliente;
 var fecha = new Date;
 
-async function buscarArticuloContado(){
+function mostarContado(){
+    document.getElementById("seccion1").style.display="block";
+    document.getElementById("seccion2").style.display="none";
+    document.getElementById("seccion3").style.display="none";
+    document.getElementById("titulo_resultado").style.display="none";
+   document.getElementById("selectorArticulos").innerHTML="";
+   document.getElementById("container").style.backgroundColor="green";
+    
+}
+function mostrarCuentaCorriente(){
+    document.getElementById("seccion1").style.display="none";
+    document.getElementById("seccion2").style.display="block";
+    document.getElementById("seccion3").style.display="none";
+    document.getElementById("titulo_resultado").style.display="none";
+    document.getElementById("selectorArticulos").innerHTML="";
+    document.getElementById("container").style.backgroundColor="rgb(27, 156, 199)";
+}
+function mostrarTarjeta(){
+    document.getElementById("seccion1").style.display="none";
+    document.getElementById("seccion2").style.display="none";
+    document.getElementById("seccion3").style.display="block";
+    document.getElementById("titulo_resultado").style.display="none";
+    document.getElementById("selectorArticulos").innerHTML="";
+    document.getElementById("container").style.backgroundColor="rgb(223, 199, 17)";
+}
 
+
+
+
+
+async function buscarArticuloContado(){
+    document.getElementById("titulo_resultado").style.display="block";
     document.getElementById("selectorArticulos").innerHTML=`<td></td>`;
     
         let productos=await axios.get("http://localhost:3001/articulo");
@@ -41,6 +96,8 @@ async function buscarArticuloContado(){
     
    
 }
+
+
 async function selecArticulo(id){
     let artc=await axios.get("http://localhost:3001/articulo");
     var_id=id;
@@ -55,6 +112,7 @@ async function selecArticulo(id){
         alert(err)
     }
     document.getElementById("selectorArticulos").innerHTML="";
+    document.getElementById("titulo_resultado").style.display="none";
     
 }
 
@@ -125,6 +183,8 @@ async function aceptarVentaContado(){
     
         let total1= parseInt(totalViejo) + parseInt(total);
 
+       
+
          let estado=await axios.put("http://localhost:3001/EstadoDeCaja/1",{
              efectivo:total1
          });
@@ -157,7 +217,9 @@ async function aceptarVentaContado(){
     } catch (err) {
         alert(err)   
     }
-
+    }
+    else if(cant == 0 ){
+        alert("no hay stock de este procuto")
     }
     else{
         alert("La cantidad selecciona tiene que se mayor a 0 o menor que "+cant+" ya que esa es la cantidad de "+nombre+" disponible.")
@@ -170,7 +232,8 @@ async function aceptarVentaContado(){
 }
 
 async function buscadorClienteCuentaCorriente(){
-    document.getElementById("SelectorClientes").innerHTML=`<td></td>`;
+    document.getElementById("titulo_resultado").style.display="block";
+    document.getElementById("selectorArticulos").innerHTML=`<td></td>`;
     let clientes=await axios.get("http://localhost:3001/clientes");
     let nombresolicitado=document.getElementById("cliente").value;
     let texto=nombresolicitado.toLowerCase();
@@ -179,7 +242,7 @@ async function buscadorClienteCuentaCorriente(){
         nombre=item.nomYape.toLowerCase();
        if (nombre.indexOf(texto)!= -1) {
 
-           document.getElementById("SelectorClientes").innerHTML+=`<td><button id="btn" class="btn btn-outline-dark" onclick="selecCliente(${item.id})">${item.nomYape}</button></td><br>`
+           document.getElementById("selectorArticulos").innerHTML+=`<td><button id="btn" class="btn btn-outline-dark" onclick="selecCliente(${item.id})">${item.nomYape}</button></td><br>`
        }
    }
 }
@@ -197,12 +260,13 @@ async function selecCliente(id){
     } catch (err) {
         alert(err)
     }
-    document.getElementById("SelectorClientes").innerHTML="";
+    document.getElementById("selectorArticulos").innerHTML="";
+    document.getElementById("titulo_resultado").style.display="none";
 }
 
 async function buscardorArticulosCuentaCorriente(){
-    document.getElementById("SelectorClientes").innerHTML=`<td></td>`;
-    
+    document.getElementById("selectorArticulos").innerHTML=`<td></td>`;
+    document.getElementById("titulo_resultado").style.display="block";
         let productos=await axios.get("http://localhost:3001/articulo");
          let nombreSolicitado=document.getElementById("articuloCuentaCorriente").value;
         let texto=nombreSolicitado.toLowerCase();
@@ -212,12 +276,12 @@ async function buscardorArticulosCuentaCorriente(){
          nombre=item.nombre.toLowerCase();
         if (nombre.indexOf(texto)!= -1) {
 
-            document.getElementById("SelectorClientes").innerHTML+=`<td><button id="btn" class="btn btn-outline-dark" onclick="selecArticuloCuentaCorriente(${item.id})">${item.nombre}</button></td><br>`
+            document.getElementById("selectorArticulos").innerHTML+=`<td><button id="btn" class="btn btn-outline-dark" onclick="selecArticuloCuentaCorriente(${item.id})">${item.nombre}</button></td><br>`
         }
     }
     
     if ( nombre =="") {
-        document.getElementById("SelectorClientes").innerHTML+=` <td>No se encontraron resultados de la busqueda</td>`
+        document.getElementById("selectorArticulos").innerHTML+=` <td>No se encontraron resultados de la busqueda</td>`
     } 
 }
 
@@ -234,7 +298,8 @@ async function selecArticuloCuentaCorriente(id){
     } catch (err) {
         alert(err)
     }
-    document.getElementById("SelectorClientes").innerHTML="";
+    document.getElementById("selectorArticulos").innerHTML="";
+    document.getElementById("titulo_resultado").style.display="none";
 }
 
 async function calcularVentaCuentaCorriente(){
@@ -298,7 +363,7 @@ async function aceptarVentaCuentaCorriente(){
                     }
                 }
                     
-                if (cantidad>0 && cantidad<=cant) {
+                if (cantidad>0 && cantidad<=cant &&nombreCliente != "") {
                     
                 let estado=await axios.get("http://localhost:3001/EstadoDeCaja");
                 let totales;
@@ -373,7 +438,11 @@ async function aceptarVentaCuentaCorriente(){
 
                     alert("Venta Realizada");
                 
-    }else{
+    }
+    else if(cant == 0 ){
+        alert("no hay stock de este procuto")
+    }
+    else{
         alert("La cantidad selecciona tiene que se mayor a 0 o menor que "+cant+" ya que esa es la cantidad de "+nombre+" disponible.")
         document.getElementById("cliente").value="";
         document.getElementById("articuloCuentaCorriente").value="";
@@ -393,3 +462,167 @@ async function aceptarVentaCuentaCorriente(){
     document.getElementById("cantidadCuentaCorriente").value="";
     document.getElementById("TotalCuentaCorriente").value="0";
  }
+
+
+
+ async function buscadorArticuloTarjeta(){
+    document.getElementById("titulo_resultado").style.display="block";
+    document.getElementById("selectorArticulos").innerHTML=`<td></td>`;
+    
+        let productos=await axios.get("http://localhost:3001/articulo");
+
+         let nombreSolicitado=document.getElementById("articuloContado").value;
+         
+        let texto=nombreSolicitado.toLowerCase();
+       let nombre;
+
+        for (let item of productos.data) {
+         nombre=item.nombre.toLowerCase();
+        if (nombre.indexOf(texto)!= -1) {
+
+            document.getElementById("selectorArticulos").innerHTML+=`<td><button id="btn" class="btn btn-outline-dark" onclick="selecArticuloTarjeta(${item.id})">${item.nombre}</button></td><br>`
+        }
+    }
+    
+    if ( nombre =="") {
+        document.getElementById("selectorArticulos").innerHTML+=` <td>No se encontraron resultados de la busqueda</td>`
+    }    
+}
+
+async function selecArticuloTarjeta(id){
+
+    let artc=await axios.get("http://localhost:3001/articulo");
+
+    var_id=id;
+
+    try {
+       for (let item of artc.data) {
+        if (item.id==var_id) {
+            document.getElementById("articuloTarjeta").value = item.nombre;
+        }
+    } 
+    } catch (err) {
+        alert(err)
+    }
+
+    document.getElementById("selectorArticulos").innerHTML="";
+    document.getElementById("titulo_resultado").style.display="none";
+    
+}
+
+async function calcularVentaTarjeta(){
+
+    let precio;
+    let total;
+
+    let nombreArt=document.getElementById("articuloTarjeta").value;
+    let articulo=await axios.get("http://localhost:3001/articulo");
+    let cantidad=document.getElementById("cantidad_tarjeta").value;
+
+    for (let item of articulo.data) {
+        if (nombreArt==item.nombre) {
+            precio=item.PrecioVenta;
+        }
+    }
+    
+    total=parseInt(precio*cantidad) ;
+
+    document.getElementById("total_tarjeta").value=total;
+
+}
+
+function cancelarVentaTarjeta(){
+    document.getElementById("articuloTarjeta").value="";
+    document.getElementById("cantidad_tarjeta").value="";
+    document.getElementById("total_tarjeta").value="0";
+}
+
+async function aceptarVentaTarjeta(){
+   
+ 
+    let articulo=await axios.get("http://localhost:3001/articulo");
+
+    let nombre=document.getElementById("articuloTarjeta").value;
+    let cantidad=parseInt(document.getElementById("cantidad_tarjeta").value) ;
+    let total=document.getElementById("total_tarjeta").value;
+    let PC;
+    let PV;
+    let idCat;
+    let artId;
+    let cant;
+  
+    
+   
+        for (let item of articulo.data) {
+        if (item.nombre==nombre) {
+            artId=item.id
+            cant=item.cantidad;
+            PV=item.PrecioVenta;
+            PC=item.PrecioCompra;
+            idCat=item.categoriaId;
+        }
+    }
+         
+    if (cantidad>0 && cantidad<=cant && nombre != "") {
+        
+     try {
+         let totales=await axios.get("http://localhost:3001/EstadoDeCaja");
+
+         let totalViejo;
+
+         for (let item of totales.data) {
+             if (item.id==3) {
+                 totalViejo = item.VentasTrasferencias;
+             }
+         }
+     
+    
+        let total1= parseInt(totalViejo) + parseInt(total);
+
+       
+
+         let estado=await axios.put("http://localhost:3001/EstadoDeCaja/3",{
+            VentasTrasferencias:total1
+         });
+
+       
+       let article = await axios.post("http://localhost:3001/ventas",{
+            tipoVentaId:1,
+            articuloId: artId,
+             cantidad: cantidad,
+             totalVenta:total,
+             estadoVenta:1,
+             dia:fecha.getDate(),
+             mes:fecha.getMonth()
+        });  
+        
+       
+        let nuevaCantidad=cant-cantidad;
+
+      let  restaDeCantidad=await axios.put("http://localhost:3001/articulo/"+artId,{
+            nombre: nombre,
+            cantidad: nuevaCantidad,
+            PrecioCompra: PC,
+            PrecioVenta: PV,
+            categoriaId: idCat
+            });
+        
+        alert("Venta Realizada");
+    
+
+    } catch (err) {
+        alert(err)   
+    }
+    }
+    else if(cant == 0 ){
+        alert("no hay stock de este procuto")
+    }
+    else{
+        alert("La cantidad selecciona tiene que se mayor a 0 o menor que "+cant+" ya que esa es la cantidad de "+nombre+" disponible.")
+        document.getElementById("articuloContado").value="";
+        document.getElementById("cantidadContado").value="";
+        document.getElementById("totalContado").value="0";
+        
+    }
+
+}

@@ -18,35 +18,81 @@
   </head>
   <body>
     <nav>
-      <ul class="nav nav-tabs d-flex justify-content-end ">
+      <ul class="nav nav-tabs d-flex justify-content-end">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../index.html">Menu principal</a>
-       </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../RegistrarStock/Admin.html">Registrar Stock</a>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="../PantallaInicial/principal.html"
+            >Menu principal</a
+          >
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../Ventas/Ventas.html">Ventas</a>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="../RegistrarStock/Admin.html"
+            >Registrar Stock</a
+          >
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../AnulacionVentas/anulacion.html">Anulacion de Ventas</a>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="../Ventas/Ventas.html"
+            >Ventas</a
+          >
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../MovimientosCaja/movimientos.html">Movimientos de Caja</a>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="../AnulacionVentas/anulacion.html"
+            >Anulacion de Ventas</a
+          >
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../RegistarClientes/registrarClientes.html">Registrar Clientes</a>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="../MovimientosCaja/movimientos.html"
+            >Movimientos de Caja</a
+          >
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../CobranzaCuentaCorriente/cobranza.html">Cobranza CuentaCorriente</a>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="../RegistarClientes/registrarClientes.html"
+            >Registrar Clientes</a
+          >
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../ReportesMultiples/reportes.html">Reportes Multiples</a>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="../CobranzaCuentaCorriente/cobranza.html"
+            >Cobranza CuentaCorriente</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="../ReportesMultiples/reportes.html"
+            >Reportes Multiples</a
+          >
         </li>
       </ul>
     </nav>
-    <div id="container" >
-      <section id="seccion1">
+    <div id="contenedor1">
+ <div id="container">
+      <div id="btn_tipo_venta">
+        <button id="mostrar_ventaContado">Venta Contado</button>
+        <button id="mostrar_ventaCuentaCorriente">Venta CuentaCorriete</button>
+        <button id="mostrar_ventaTarjeta">Venta Trasferencia o Tarjeta</button>
+      </div>
+      <section id="seccion1" style="display:none">
         <h3>Ventas Contado</h3>
 
         <label for="articuloContado">Articulo:</label>
@@ -59,7 +105,7 @@
         <button id="buscador">
           <img
             id="lupa"
-            src="/imagenes/pngtree-magnifying-glass-icon-png-image_1644200.jpg"
+            src="../imagenes/pngtree-magnifying-glass-icon-png-image_1644200.jpg"
             alt=""
           /></button
         ><br />
@@ -80,21 +126,16 @@
           <button id="aceptarVenta">Aceptar</button>
         </div>
 
-        <div id="div1">
-          <table class="table">
-            <tbody id="selectorArticulos"></tbody>
-          </table>
-        </div>
       </section>
 
-      <section>
+      <section id="seccion2" style="display:none">
         <h3>ventas CuentaCorriente</h3>
         <label for="">Cliente:</label>
         <input type="text" id="cliente" placeholder="Ingrese el Cliente" />
         <button id="buscarClientes">
           <img
             id="lupaClientes"
-            src="/imagenes/pngtree-magnifying-glass-icon-png-image_1644200.jpg"
+            src="../imagenes/pngtree-magnifying-glass-icon-png-image_1644200.jpg"
             alt=""
           /></button
         ><br /><br />
@@ -108,7 +149,7 @@
         <button id="buscador1">
           <img
             id="lupa"
-            src="/imagenes/pngtree-magnifying-glass-icon-png-image_1644200.jpg"
+            src="../imagenes/pngtree-magnifying-glass-icon-png-image_1644200.jpg"
             alt=""
           /></button
         ><br />
@@ -129,12 +170,56 @@
           <button id="aceptarVenta2">Aceptar</button>
         </div>
 
-        <div id="div1">
-          <table class="table">
-            <tbody id="SelectorClientes"></tbody>
-          </table>
+        
+      </section>
+
+      <section id="seccion3" style="display:none">
+        <h3>Ventas Tarjeta o Trasferencia</h3>
+
+        <label for="articuloTarjeta">Articulo:</label>
+        <input
+          type="text"
+          name="articuloTarjeta"
+          id="articuloTarjeta"
+          placeholder="Nombre o Codigo"
+        />
+        <button id="buscador_articulo_transferencia">
+          <img
+            id="lupa"
+            src="../imagenes/pngtree-magnifying-glass-icon-png-image_1644200.jpg"
+            alt=""
+          /></button
+        ><br />
+        <br /><label for="">Cantidad:</label>
+        <input
+          type="number"
+          id="cantidad_tarjeta"
+          name="cantidad_tarjeta"
+          pattern="[0-9]+"
+          placeholder="cantidad"
+        />
+        <br />
+        <label for="">Total:</label>
+        <input type="text" value="0" id="total_tarjeta" readonly />
+        <button id="calcular_venta_tarjeta">Calcular</button><br />
+        <div id="btns">
+          <button id="cancelarVenta_tarjeta">Cancelar</button>
+          <button id="aceptarVenta_tarjeta">Aceptar</button>
         </div>
+
+        
       </section>
     </div>
+    <div id="div1">
+      <h3 id="titulo_resultado" style="display: none;">Resultado</h3>
+      <div id="muestra">
+        <table class="table">    
+        <tbody id="selectorArticulos"></tbody>
+      </table>
+      </div>
+      
+    </div>
+    </div>
+   
   </body>
 </html>

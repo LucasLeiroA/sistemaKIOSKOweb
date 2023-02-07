@@ -1,14 +1,19 @@
 window.onload=principal;
 
 //obteniendo la url desde el localstorage
-
+let urlActual = window.location.href;
 let url = localStorage.getItem("url");
-console.log(url);
+
 UrlAnterior = document.referrer;
-if(UrlAnterior !== url){
+if (UrlAnterior !== urlActual) {
+    
+     if(UrlAnterior !== url ){
+   
     alert('no intentes hackear')
    window.location= "./Admin.html";
+}   
 }
+
 
 
 

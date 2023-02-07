@@ -1,10 +1,24 @@
 window.onload=principal;
 
+
+// let url = window.location.href;
+
+// localStorage.setItem("urlReportes" , url);
+
+// let pantalla = localStorage.getItem("urlPatallaIncial");
+// let admin = localStorage.getItem("urlAdmin");
+// let ventas = localStorage.getItem("urlVentas");
+// let anulacion = localStorage.getItem("urlAnulacion");
+// let movimientos = localStorage.getItem("urlMovimientos");
+// let registrar = localStorage.getItem("urlRegistrarClientes");
+// let cobranza = localStorage.getItem("urlCobranza");
+
 function principal(){
     document.getElementById("brnAceptar").addEventListener("click", aceptarOpcion)
 }
 
 var fecha=new Date;
+
 async function aceptarOpcion(){
 
     document.getElementById("tablaMuestra").innerHTML="";
@@ -25,12 +39,14 @@ async function aceptarOpcion(){
                 <th scope="col">EstadoDeCaja</th>
                 <th scope="col">Contado</th>
                 <th scope="col">CuentaCorriente</th>
+                <th scope="col">Transferecia/Tarjetas</th>
             </tr>
             `
     
             let estado=await axios.get("http://localhost:3001/EstadoDeCaja");
             let efectivo;
             let cc;
+            let tarjeta;
             for (let item of estado.data) {
                 if (item.id==1) {
                    efectivo=item.efectivo;
@@ -39,13 +55,16 @@ async function aceptarOpcion(){
                 if (item.id==2) {
                   cc=item.ventasEnCuentaCorriente;
                 }
+                if (item.id==3) {
+                    tarjeta=item.VentasTrasferencias;
+                  }
             }
             document.getElementById("tablaMuestra").innerHTML+=
             `<tr>
                 <th scope="row"></th>
                 <td>${efectivo}</td>
                 <td>${cc}</td>
-                
+                <td>${tarjeta}</td>
             </tr>`;
         }
     
@@ -68,7 +87,7 @@ async function aceptarOpcion(){
             let tipo;
          
             for (let item of ventas.data) {
-                if (item.estadoVenta==1 && item.tipoVentaId==1 || item.tipoVentaId==2) {
+                if (item.estadoVenta==1 && item.tipoVentaId==1 || item.tipoVentaId==2 || item.tipoVentaId == 3) {
                   
                                     
                     for (let item2 of articulos.data) {
@@ -99,6 +118,8 @@ async function aceptarOpcion(){
         }
         if (reporte=="ventasDelDia") {
             
+
+
             document.getElementById("cabezaTabla").innerHTML=
             `
             <tr>
@@ -112,6 +133,7 @@ async function aceptarOpcion(){
             let ventas=await axios.get("http://localhost:3001/ventas");
             let articulos=await axios.get("http://localhost:3001/articulo");
             let tipoVenta=await axios.get("http://localhost:3001/tipoVenta")
+            let total_dia = 0;
             let nom;
             let tipo;
             
@@ -119,9 +141,10 @@ async function aceptarOpcion(){
            
 
             for (let item of ventas.data) {
-                    if (item.dia==fecha.getDate() && item.estadoVenta==1 && item.tipoVentaId==1 || item.tipoVentaId==2) {
-                  
-                                    
+                    if (item.dia==fecha.getDate() && item.mes == fecha.getMonth() && item.estadoVenta==1 && item.tipoVentaId==1 || item.tipoVentaId==2 || item.tipoVentaId == 3) {
+                    let precio = parseInt( item.totalVenta)
+                     total_dia = total_dia + precio;
+
                     for (let item2 of articulos.data) {
                         if (item.articuloId==item2.id) {
                             nom=item2.nombre;
@@ -147,7 +170,13 @@ async function aceptarOpcion(){
                 }
                 }
               
-                
+                document.getElementById("pieTabla").innerHTML =  `<tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td>Total Contado-></td>
+                <td>${total_dia}</td>
+            </tr>`;
             
               
         }
@@ -168,11 +197,14 @@ async function aceptarOpcion(){
             let tipoVenta=await axios.get("http://localhost:3001/tipoVenta")
             let nom;
             let tipo;
-         
+            let total_mes = 0;
+
             for (let item of ventas.data) {
-                if (item.mes==fecha.getMonth() && item.estadoVenta==1 && item.tipoVentaId==1 || item.tipoVentaId==2) {
+                if (item.mes==fecha.getMonth() && item.estadoVenta==1 && item.tipoVentaId==1 || item.tipoVentaId==2 || item.tipoVentaId==3) {
                   
-                                    
+                    let precio = parseInt(item.totalVenta);
+                    total_mes = total_mes + precio;  
+                     
                     for (let item2 of articulos.data) {
                         if (item.articuloId==item2.id) {
                             nom=item2.nombre;
@@ -196,6 +228,15 @@ async function aceptarOpcion(){
                         <td>${item.totalVenta}</td>                    
                     </tr>`;
                 }
+
+                document.getElementById("pieTabla").innerHTML =  `<tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td>Total mes-></td>
+                <td>${total_mes}</td>
+            </tr>`;
+
             }
               
         }
@@ -249,6 +290,7 @@ async function aceptarOpcion(){
             }
             
         }
+
         if (reporte=="ventasCuentaCorriente") {
             
             document.getElementById("cabezaTabla").innerHTML+=
@@ -310,6 +352,56 @@ async function aceptarOpcion(){
             </tr>`;
                 
             }
+        }
+        if (reporte=="ventasTarjeta") {
+           
+            document.getElementById("cabezaTabla").innerHTML+=
+            `
+            <tr>
+                    <th scope="col">#ID</th>
+                    <th scope="col">Articulo</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">total</th>
+            </tr>
+    
+            `
+    
+    
+            let ventaContado=await axios.get("http://localhost:3001/ventas");
+            let total1=0;
+            for (let item of ventaContado.data) {
+                if (item.tipoVentaId==3 && item.estadoVentaId!=2) {
+                    
+                    let total=parseInt(item.totalVenta)
+    
+                    total1=total1+total;
+    
+                    let art=await axios.get("http://localhost:3001/articulo");
+    
+                    for (let item2 of art.data) {
+                        if (item2.id==item.articuloId) {
+                            nombre=item2.nombre;
+                            break;
+                        }
+                    }
+                    document.getElementById("tablaMuestra").innerHTML+=
+                    `<tr>
+                    <th scope="row">${item.id}</th>
+                    <td>${nombre}</td>
+                    <td>${item.cantidad}</td>
+                    <td>${item.totalVenta}</td>
+                  
+                </tr>`;
+                }
+                document.getElementById("pieTabla").innerHTML=
+                `<tr>
+                <th scope="row"></th>
+                <td></td>
+                <td>Total Tarjeta-></td>
+                <td>${total1}</td>
+            </tr>`;
+            }
+            
         }
         if (reporte=="ventaAnuladas") {
            
