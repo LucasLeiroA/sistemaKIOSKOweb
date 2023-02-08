@@ -1,11 +1,17 @@
 *{
     margin: 0%;
     padding: 0%;
+    
 }
 body{
-    width: 100%;
-    height: 650px;
+    width: 100vw;
+    height: 100vh;
    
+}
+#imgID{
+    height: 100vh;
+    width: 100vw;
+    background: url(../imagenes/tec.jpg) no-repeat center center fixed;
 }
 nav{
     height: 10%;

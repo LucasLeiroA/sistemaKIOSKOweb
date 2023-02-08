@@ -47,7 +47,8 @@ function mostarContado(){
     document.getElementById("seccion3").style.display="none";
     document.getElementById("titulo_resultado").style.display="none";
    document.getElementById("selectorArticulos").innerHTML="";
-   document.getElementById("container").style.backgroundColor="green";
+   document.getElementById("seccion1").style.backgroundColor="green";
+   document.getElementById("div1").style.backgroundColor="white";
     
 }
 function mostrarCuentaCorriente(){
@@ -56,7 +57,8 @@ function mostrarCuentaCorriente(){
     document.getElementById("seccion3").style.display="none";
     document.getElementById("titulo_resultado").style.display="none";
     document.getElementById("selectorArticulos").innerHTML="";
-    document.getElementById("container").style.backgroundColor="rgb(27, 156, 199)";
+    document.getElementById("seccion2").style.backgroundColor="rgb(27, 156, 199)";
+    document.getElementById("div1").style.backgroundColor="white";
 }
 function mostrarTarjeta(){
     document.getElementById("seccion1").style.display="none";
@@ -64,7 +66,8 @@ function mostrarTarjeta(){
     document.getElementById("seccion3").style.display="block";
     document.getElementById("titulo_resultado").style.display="none";
     document.getElementById("selectorArticulos").innerHTML="";
-    document.getElementById("container").style.backgroundColor="rgb(223, 199, 17)";
+    document.getElementById("seccion3").style.backgroundColor="rgb(223, 199, 17)";
+    document.getElementById("div1").style.backgroundColor="white";
 }
 
 
@@ -72,6 +75,7 @@ function mostrarTarjeta(){
 
 
 async function buscarArticuloContado(){
+    document.getElementById("div1").style.backgroundColor="beige";
     document.getElementById("titulo_resultado").style.display="block";
     document.getElementById("selectorArticulos").innerHTML=`<td></td>`;
     
@@ -113,6 +117,7 @@ async function selecArticulo(id){
     }
     document.getElementById("selectorArticulos").innerHTML="";
     document.getElementById("titulo_resultado").style.display="none";
+    document.getElementById("div1").style.backgroundColor="white";
     
 }
 
@@ -232,6 +237,7 @@ async function aceptarVentaContado(){
 }
 
 async function buscadorClienteCuentaCorriente(){
+    document.getElementById("div1").style.backgroundColor="beige";
     document.getElementById("titulo_resultado").style.display="block";
     document.getElementById("selectorArticulos").innerHTML=`<td></td>`;
     let clientes=await axios.get("http://localhost:3001/clientes");
@@ -262,9 +268,11 @@ async function selecCliente(id){
     }
     document.getElementById("selectorArticulos").innerHTML="";
     document.getElementById("titulo_resultado").style.display="none";
+    document.getElementById("div1").style.backgroundColor="white";
 }
 
 async function buscardorArticulosCuentaCorriente(){
+    document.getElementById("div1").style.backgroundColor="beige";
     document.getElementById("selectorArticulos").innerHTML=`<td></td>`;
     document.getElementById("titulo_resultado").style.display="block";
         let productos=await axios.get("http://localhost:3001/articulo");
@@ -300,6 +308,7 @@ async function selecArticuloCuentaCorriente(id){
     }
     document.getElementById("selectorArticulos").innerHTML="";
     document.getElementById("titulo_resultado").style.display="none";
+    document.getElementById("div1").style.backgroundColor="white";
 }
 
 async function calcularVentaCuentaCorriente(){
@@ -466,6 +475,7 @@ async function aceptarVentaCuentaCorriente(){
 
 
  async function buscadorArticuloTarjeta(){
+    document.getElementById("div1").style.backgroundColor="beige";
     document.getElementById("titulo_resultado").style.display="block";
     document.getElementById("selectorArticulos").innerHTML=`<td></td>`;
     
@@ -507,6 +517,7 @@ async function selecArticuloTarjeta(id){
 
     document.getElementById("selectorArticulos").innerHTML="";
     document.getElementById("titulo_resultado").style.display="none";
+    document.getElementById("div1").style.backgroundColor="white";
     
 }
 

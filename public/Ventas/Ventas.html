@@ -87,44 +87,44 @@
     </nav>
     <div id="contenedor1">
  <div id="container">
-      <div id="btn_tipo_venta">
-        <button id="mostrar_ventaContado">Venta Contado</button>
-        <button id="mostrar_ventaCuentaCorriente">Venta CuentaCorriete</button>
-        <button id="mostrar_ventaTarjeta">Venta Trasferencia o Tarjeta</button>
-      </div>
-      <section id="seccion1" style="display:none">
-        <h3>Ventas Contado</h3>
+  <div id="btn_tipo_venta">
+    <button id="mostrar_ventaContado">Venta Contado</button>
+    <button id="mostrar_ventaCuentaCorriente">Venta CuentaCorriete</button>
+    <button id="mostrar_ventaTarjeta">Venta Trasferencia o Tarjeta</button>
+  </div>
+  <section id="seccion1" style="display:none">
+    <h3>Ventas Contado</h3>
 
-        <label for="articuloContado">Articulo:</label>
-        <input
-          type="text"
-          name="articuloContado"
-          id="articuloContado"
-          placeholder="Nombre o Codigo"
-        />
-        <button id="buscador">
-          <img
-            id="lupa"
-            src="../imagenes/pngtree-magnifying-glass-icon-png-image_1644200.jpg"
-            alt=""
-          /></button
-        ><br />
-        <br /><label for="">Cantidad:</label>
-        <input
-          type="number"
-          id="cantidadContado"
-          name="cantidadContando"
-          pattern="[0-9]+"
-          placeholder="cantidad"
-        />
-        <br />
-        <label for="">Total:</label>
-        <input type="text" value="0" id="totalContado" readonly />
-        <button id="calcular">Calcular</button><br />
-        <div id="btns">
-          <button id="cancelarVenta">Cancelar</button>
-          <button id="aceptarVenta">Aceptar</button>
-        </div>
+    <label for="articuloContado">Articulo:</label>
+    <input
+      type="text"
+      name="articuloContado"
+      id="articuloContado"
+      placeholder="Nombre o Codigo"
+    />
+    <button id="buscador">
+      <img
+        id="lupa"
+        src="../imagenes/pngtree-magnifying-glass-icon-png-image_1644200.jpg"
+        alt=""
+      /></button
+    ><br />
+    <br /><label for="">Cantidad:</label>
+    <input
+      type="number"
+      id="cantidadContado"
+      name="cantidadContando"
+      pattern="[0-9]+"
+      placeholder="cantidad"
+    />
+    <br />
+    <label for="">Total:</label>
+    <input type="text" value="0" id="totalContado" readonly />
+    <button id="calcular">Calcular</button><br />
+    <div id="btns">
+      <button id="cancelarVenta">Cancelar</button>
+      <button id="aceptarVenta">Aceptar</button>
+    </div>
 
       </section>
 
@@ -211,7 +211,7 @@
       </section>
     </div>
     <div id="div1">
-      <h3 id="titulo_resultado" style="display: none;">Resultado</h3>
+      <h3 id="titulo_resultado" style="display: none;">Resultados</h3>
       <div id="muestra">
         <table class="table">    
         <tbody id="selectorArticulos"></tbody>

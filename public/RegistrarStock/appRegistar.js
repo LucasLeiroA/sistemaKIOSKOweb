@@ -1,18 +1,23 @@
 window.onload=principal;
 
 //obteniendo la url desde el localstorage
+
+
+
 let urlActual = window.location.href;
 let url = localStorage.getItem("urlAdmin");
 
 UrlAnterior = document.referrer;
-
+if(urlActual !== urlActual){
 if(UrlAnterior !== url ){
     
 alert('no intentes hackear')
 window.location= "./Admin.html";
 }   
+}
 
 
+localStorage.setItem("urlRegistrar" , urlActual);
 
 
 
@@ -23,8 +28,11 @@ function principal(){
     document.getElementById("mostarStock").addEventListener("click", mostarStock);
     document.getElementById("agregarArticulo").addEventListener("click", agregarStock);
     document.getElementById("modificarArticulo").addEventListener("click", modificarStock);
+    document.getElementById("btn_db").addEventListener("click", ingresoDb);
 }
-
+function ingresoDb() {
+    window.location="./ManejoDB/manejoDB.html";
+}
  var var_id;
 
  async function mostarStock(){
@@ -72,6 +80,7 @@ function principal(){
             alert(err)
         }          
 }
+
 async function elimArticulo(id){
     
     

@@ -1,4 +1,8 @@
 window.onload=principal;
+var date = new Date();
+var mes = date.getMonth();
+var fecha = date.getDate();
+var hora = date.getHours()
 
 let url = window.location.href;
 
@@ -26,28 +30,32 @@ async function aceptarTipo(){
         let TipoVenta=document.getElementById("selector").value;
 
         if (TipoVenta=="IngreDinero") {
+            document.getElementById("salida1").style.background="#3b4652"
             document.getElementById("salida1").innerHTML="";
             document.getElementById("pieTabla").innerHTML="";
             document.getElementById("salida1").innerHTML+=
             `
-            <label for="">Monto:</label>
+            <h3>Ingreso de Dinero</h3>
+            <label for="">Monto</label>
             <input type="number" id="ingreso1" name="age" pattern="[0-9]+" /> 
-            <label for="">Descipcion:</label><br>
-            <textarea name="" id="areatext" cols="30" rows="3"></textarea><br>
+            <label for="">Descipcion</label>
+            <textarea name="" id="areatext" cols="30" rows="3"></textarea>
             <button id="confirmar">Confirmar</button>
             `
             document.getElementById("confirmar").addEventListener("click",IngresoDeDinero)
             
         }
         if (TipoVenta=="SalidaDinero") {
+            document.getElementById("salida1").style.background="#3b4652"
             document.getElementById("salida1").innerHTML="";
             document.getElementById("pieTabla").innerHTML="";
             document.getElementById("salida1").innerHTML+=
             `
+            <h3>Salida de Dinero</h3>
             <label for="">Monto:</label>
             <input type="number" id="ingreso1" name="age" pattern="[0-9]+" /> 
-            <label for="">Descipcion:</label><br>
-            <textarea name="" id="areatext" cols="30" rows="3"></textarea><br>
+            <label for="">Descipcion:</label>
+            <textarea name="" id="areatext" cols="30" rows="3"></textarea>
             <button id="confirmar1">Confirmar</button>
 
             `
@@ -67,10 +75,17 @@ async function IngresoDeDinero(){
     let total;
     let final;
 try {
+    if( descripcion != "" && money > 0){
         let ingreso=await axios.post("http://localhost:3001/ingresoDinero",{
         dinero:parseInt(money),
-        descripcion:descripcion
-    })
+        descripcion:descripcion,
+        mes:mes,
+        fecha:fecha,
+        hora:hora
+
+    })}else(
+        alert("Debe cargar ambos campos")
+    )
 
     let estado=await axios.get("http://localhost:3001/EstadoDeCaja");
     for (let item of estado.data) {
@@ -83,6 +98,8 @@ try {
     let modiestado=await axios.put("http://localhost:3001/EstadoDeCaja/1",{
         efectivo:final
     });
+
+   limpiar();
 } catch (err) {
     alert(err)
 }
@@ -95,10 +112,18 @@ async function salidaDeDinero(){
     let total;
     let final;
     try {
-        let ingreso=await axios.post("http://localhost:3001/salidaDinero",{
+        if( descripcion != "" && money  > 0){
+              let ingreso=await axios.post("http://localhost:3001/salidaDinero",{
         dinero:parseInt(money),
-        descripcion:descripcion
-    })
+        descripcion:descripcion,
+        mes:mes,
+        fecha:fecha,
+        hora:hora 
+        }
+     
+    )}else(
+        alert("Debe cargar ambos campos")
+    )
 
     let estado=await axios.get("http://localhost:3001/EstadoDeCaja");
     for (let item of estado.data) {
@@ -111,7 +136,13 @@ async function salidaDeDinero(){
     let modiestado=await axios.put("http://localhost:3001/EstadoDeCaja/1",{
         efectivo:final
     });
+    limpiar();
 } catch (err) {
     alert(err)
 }
+}
+
+function limpiar(){
+    document.getElementById("areatext").value = "";
+    document.getElementById("ingreso1").value = "";
 }

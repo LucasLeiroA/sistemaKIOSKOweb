@@ -25,7 +25,7 @@ async function mostrarclintes(){
 
    for (let item2 of cuentaCorriente.data) {
        for (let item of cliente.data) {
-            if (item2.clientesId==item.id) {
+            if (item2.clientesId==item.id && item2.deuda > 0) {
             document.getElementById("cuerpoTabla").innerHTML+=
             `
             <td><button id="btn" class="btn btn-outline-dark" onclick="selecCliente(${item.id})">${item.nomYape}</button></td><br>

@@ -25,12 +25,13 @@ async function aceptarOpcion(){
     document.getElementById("cabezaTabla").innerHTML="";
     document.getElementById("tablaMuestra2").innerHTML="";
     document.getElementById("cabezaTabla2").innerHTML="";
+    document.getElementById("pieTabla").innerHTML ="";
     try {
 
         let articulo;
         let Cliente;
         let nombre;
-        let reporte=document.getElementById("selector").value;
+        let reporte = document.getElementById("selector").value;
 
         if (reporte=="estadoDeCaja") {
             document.getElementById("cabezaTabla").innerHTML=
@@ -87,7 +88,7 @@ async function aceptarOpcion(){
             let tipo;
          
             for (let item of ventas.data) {
-                if (item.estadoVenta==1 && item.tipoVentaId==1 || item.tipoVentaId==2 || item.tipoVentaId == 3) {
+                if (item.estadoVentaId !== 2){ 
                   
                                     
                     for (let item2 of articulos.data) {
@@ -174,7 +175,7 @@ async function aceptarOpcion(){
                 <th scope="row"></th>
                 <td></td>
                 <td></td>
-                <td>Total Contado-></td>
+                <td>Total-></td>
                 <td>${total_dia}</td>
             </tr>`;
             
@@ -698,7 +699,7 @@ async function aceptarOpcion(){
                         <th scope="col">#ID</th>
                         <th scope="col">Dinero</th>
                         <th scope="col">Descripcion</th>
-                        <th scope="col">IngresoDeDinero</th>
+                        <th scope="col">Tipo</th>
                 </tr>
         
                 `
@@ -712,31 +713,24 @@ async function aceptarOpcion(){
                          <tr>
                                <th scope="row">${item.id}</th>
                                <td>${item.dinero}</td>
-                               <td>${item.descripcion}</td>                                                     
+                               <td>${item.descripcion}</td>  
+                               <td>Ingreso De Dinero</td>                                                    
                            </tr>`;
                 }
 
-                document.getElementById("cabezaTabla2").innerHTML+=
-                `
-                <tr>
-                        <th scope="col">#ID</th>
-                        <th scope="col">Dinero</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">SalidaDeDinero</th>
-                </tr>
-        
-                `
+            
 
                 let salDinero=await axios.get("http://localhost:3001/salidaDinero");
            
                 for (let item of salDinero.data) {
-                    document.getElementById("tablaMuestra2").innerHTML+= 
+                    document.getElementById("tablaMuestra").innerHTML+= 
                     `
                     
                         <tr>
                                <th scope="row">${item.id}</th>
                                <td>-${item.dinero}</td>
-                               <td>${item.descripcion}</td>                            
+                               <td>${item.descripcion}</td>  
+                               <td>Salida De Dinero</td>                           
                            </tr>
                     
                     `;
